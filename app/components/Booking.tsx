@@ -37,6 +37,7 @@ export default function Booking({ lang }: BookingProps) {
     const script = document.createElement("script");
     script.src = "https://reservation.rowlygo.fi/embed.js";
     script.setAttribute("data-organizationId", "dac6fa50-d748-4c66-bb5d-76bc5fd34866");
+    script.setAttribute("data-color", "#DFC13F");
     script.async = true;
     containerRef.current.appendChild(script);
   }, []);
