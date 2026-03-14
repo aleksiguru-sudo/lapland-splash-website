@@ -40,6 +40,28 @@ export default function Booking({ lang }: BookingProps) {
     script.setAttribute("data-color", "#DFC13F");
     script.async = true;
     containerRef.current.appendChild(script);
+
+    // Ylikirjoitetaan RowlyGO:n violetti väri keltaisella CSS-injektiolla
+    const style = document.createElement("style");
+    style.innerHTML = `
+      #urent-app-root button[class*="primary"],
+      #urent-app-root [class*="primaryButton"],
+      #urent-app-root [class*="searchButton"],
+      #urent-app-root button[type="submit"],
+      #urent-app-root .btn-primary,
+      #urent-app-root [style*="background-color: rgb(88, 28, 135)"],
+      #urent-app-root [style*="background-color: purple"],
+      #urent-app-root [style*="background: purple"] {
+        background-color: #DFC13F !important;
+        color: #0a0a0a !important;
+      }
+      #urent-app-root a[class*="link"],
+      #urent-app-root [class*="link"],
+      #urent-app-root [class*="color-primary"] {
+        color: #DFC13F !important;
+      }
+    `;
+    document.head.appendChild(style);
   }, []);
 
   return (
