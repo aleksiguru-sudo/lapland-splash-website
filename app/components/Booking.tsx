@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import Script from "next/script";
 
 interface BookingProps {
   lang: "fi" | "en";
@@ -22,17 +22,6 @@ const t = {
 
 export default function Booking({ lang }: BookingProps) {
   const txt = t[lang];
-
-  useEffect(() => {
-    const existing = document.querySelector('script[src="https://reservation.rowlygo.fi/embed.js"]');
-    if (!existing) {
-      const script = document.createElement("script");
-      script.src = "https://reservation.rowlygo.fi/embed.js";
-      script.setAttribute("data-organizationId", "dac6fa50-d748-4c66-bb5d-76bc5fd34866");
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
 
   return (
     <section id="varaa" className="py-32 px-6" style={{ background: "var(--dark2)" }}>
@@ -59,17 +48,21 @@ export default function Booking({ lang }: BookingProps) {
           </div>
         </div>
 
-        {/* RowlyGO widget */}
+        {/* RowlyGO widget — script luo urent-app-root divin ennen itseään */}
         <div
           style={{
             background: "var(--dark3)",
             borderRadius: "4px",
             border: "1px solid rgba(255,255,255,0.06)",
             minHeight: "500px",
-            padding: "2rem",
+            overflow: "hidden",
           }}
         >
-          <div id="rowlygo-widget" />
+          <Script
+            src="https://reservation.rowlygo.fi/embed.js"
+            data-organizationId="dac6fa50-d748-4c66-bb5d-76bc5fd34866"
+            strategy="afterInteractive"
+          />
         </div>
 
         <p className="text-center text-white/30 text-xs mt-6 uppercase tracking-widest">
