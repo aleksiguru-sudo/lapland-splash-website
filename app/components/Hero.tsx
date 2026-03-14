@@ -1,139 +1,79 @@
 "use client";
 
-interface HeroProps {
-  lang: "fi" | "en";
-}
-
-const t = {
-  fi: {
-    label: "Rovaniemi · Kemijoki",
-    title1: "VAUHTIA",
-    title2: "VESILLE",
-    sub: "Jet ski -safarit Lapin luonnossa — adrenaliinia, vapautta ja unohtumattomia elämyksiä",
-    cta: "VARAA SAFARI",
-    ctaAlt: "KATSO SAFARIT",
-    scroll: "Vieritä alas",
-    badge1: "4.9 / 5",
-    badge1sub: "asiakasarvio",
-    badge2: "100+",
-    badge2sub: "safaria / kesä",
-    badge3: "3 × Sea-Doo",
-    badge3sub: "kalustoa",
-  },
-  en: {
-    label: "Rovaniemi · Kemijoki River",
-    title1: "RIDE THE",
-    title2: "ARCTIC",
-    sub: "Jet ski safaris in Finnish Lapland — adrenaline, freedom and unforgettable experiences",
-    cta: "BOOK A SAFARI",
-    ctaAlt: "VIEW SAFARIS",
-    scroll: "Scroll down",
-    badge1: "4.9 / 5",
-    badge1sub: "customer rating",
-    badge2: "100+",
-    badge2sub: "safaris / summer",
-    badge3: "3 × Sea-Doo",
-    badge3sub: "fleet",
-  },
-};
+interface HeroProps { lang: "fi" | "en"; }
 
 export default function Hero({ lang }: HeroProps) {
-  const txt = t[lang];
+  const fi = lang === "fi";
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden">
-      {/* Video background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
+    <section className="relative h-screen min-h-[700px] flex flex-col justify-end overflow-hidden">
+      {/* Video */}
+      <video autoPlay muted loop playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ filter: "brightness(0.55)" }}
-      >
+        style={{ filter: "brightness(0.45) saturate(1.1)" }}>
         <source src="/hero-video.mp4" type="video/mp4" />
-        {/* Fallback image */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/LaplandSplash-SonyBlue-1.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
       </video>
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/60 via-transparent to-transparent" />
+      {/* Gradient layers */}
+      <div className="absolute inset-0" style={{
+        background: "linear-gradient(to top, #080808 0%, rgba(8,8,8,0.4) 40%, rgba(8,8,8,0.1) 70%, transparent 100%)"
+      }} />
+      <div className="absolute inset-0" style={{
+        background: "linear-gradient(to right, rgba(8,8,8,0.7) 0%, transparent 60%)"
+      }} />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 pb-20 pt-36">
-        <div className="max-w-3xl">
-          {/* Label */}
-          <p className="section-label mb-6">{txt.label}</p>
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 pb-16 md:pb-24">
+        <p className="label mb-6 md:mb-8">
+          {fi ? "Rovaniemi · Kemijoki · Lappi" : "Rovaniemi · Kemijoki River · Lapland"}
+        </p>
 
-          {/* Title */}
-          <h1 className="section-heading text-white mb-6"
-            style={{ fontSize: "clamp(4rem, 12vw, 9rem)" }}>
-            {txt.title1}<br />
-            <span style={{ color: "#DFC13F" }}>{txt.title2}</span>
-          </h1>
+        <h1 className="display text-white mb-6" style={{ fontSize: "clamp(4.5rem, 14vw, 13rem)" }}>
+          {fi ? (
+            <><span style={{ color: "var(--yellow)" }}>VAUHTIA</span><br />VESILLE</>
+          ) : (
+            <><span style={{ color: "var(--yellow)" }}>RIDE THE</span><br />ARCTIC</>
+          )}
+        </h1>
 
-          {/* Subtitle */}
-          <p className="text-white/70 text-lg md:text-xl mb-10 max-w-xl leading-relaxed">
-            {txt.sub}
-          </p>
+        <p className="text-white/65 mb-10 max-w-lg leading-relaxed"
+          style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}>
+          {fi
+            ? "Suomen paras jet ski -elämys — Sea-Doo -kalusto, ammattilaisoppaat ja unohtumaton reitti Kemijoen aalloilla."
+            : "Finland's best jet ski experience — Sea-Doo fleet, professional guides and an unforgettable route on the Kemijoki river."}
+        </p>
 
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-4">
-            <a href="#varaa" className="btn-primary text-base">
-              {txt.cta}
-            </a>
-            <a href="#safarit" className="btn-ghost text-base">
-              {txt.ctaAlt}
-            </a>
-          </div>
+        <div className="flex flex-wrap gap-4">
+          <a href="#varaa" className="btn btn-yellow">
+            {fi ? "Varaa safari →" : "Book safari →"}
+          </a>
+          <a href="#safarit" className="btn btn-outline">
+            {fi ? "Katso safarit" : "View safaris"}
+          </a>
         </div>
 
-        {/* Stats bar */}
-        <div className="mt-16 flex flex-wrap gap-8 md:gap-16">
+        {/* Stats */}
+        <div className="mt-14 flex flex-wrap gap-x-12 gap-y-4">
           {[
-            { val: txt.badge1, sub: txt.badge1sub },
-            { val: txt.badge2, sub: txt.badge2sub },
-            { val: txt.badge3, sub: txt.badge3sub },
-          ].map((b) => (
-            <div key={b.val}>
-              <p
-                className="text-white font-extrabold italic"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  fontSize: "1.75rem",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                {b.val}
-              </p>
-              <p className="text-white/50 text-xs uppercase tracking-widest mt-0.5">
-                {b.sub}
-              </p>
+            { n: "100+", t: fi ? "safaria / kesä" : "safaris / summer" },
+            { n: "4.9★", t: fi ? "asiakasarvio" : "customer rating" },
+            { n: "3×", t: "Sea-Doo" },
+            { n: "2024", t: fi ? "perustettu" : "founded" },
+          ].map(s => (
+            <div key={s.n}>
+              <div className="display text-white" style={{ fontSize: "1.8rem" }}>{s.n}</div>
+              <div className="text-white/40 text-xs uppercase tracking-widest mt-1">{s.t}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 right-8 z-10 hidden md:flex flex-col items-center gap-2">
-        <div
-          className="w-px h-12 animate-pulse"
-          style={{ background: "linear-gradient(to bottom, transparent, #DFC13F)" }}
-        />
-        <p
-          className="text-white/40 text-xs uppercase tracking-widest"
-          style={{ writingMode: "vertical-rl" }}
-        >
-          {txt.scroll}
-        </p>
+      {/* Scroll hint */}
+      <div className="absolute bottom-8 right-8 z-10 hidden lg:flex flex-col items-center gap-3">
+        <span className="text-white/30 text-xs uppercase tracking-[0.2em]" style={{ writingMode: "vertical-rl" }}>
+          {fi ? "Vieritä" : "Scroll"}
+        </span>
+        <div className="w-px h-14" style={{ background: "linear-gradient(to bottom, transparent, var(--yellow))" }} />
       </div>
     </section>
   );

@@ -2,103 +2,109 @@
 
 :root {
   --yellow: #DFC13F;
-  --navy: #104D80;
-  --skyblue: #E0F1FF;
-  --dark: #0a0a0a;
-  --dark2: #111111;
-  --dark3: #181818;
+  --yellow-dark: #b89a28;
+  --dark: #080808;
+  --dark2: #0f0f0f;
+  --dark3: #161616;
+  --dark4: #1e1e1e;
 }
 
-* { box-sizing: border-box; }
-
-body {
-  background: var(--dark);
-  color: #ffffff;
-  font-family: var(--font-body, Arial, sans-serif);
-  overflow-x: hidden;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-heading, Arial, sans-serif);
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
 
-/* Buttons */
-.btn-primary {
-  background: var(--yellow);
-  color: #0a0a0a;
+body {
+  background: var(--dark);
+  color: #fff;
+  font-family: var(--font-body, 'Arial', sans-serif);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+.display {
+  font-family: var(--font-heading, Arial, sans-serif);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+}
+
+.label {
+  font-family: var(--font-heading, Arial, sans-serif);
   font-weight: 800;
   font-style: italic;
-  padding: 1rem 2.5rem;
-  border-radius: 2px;
-  display: inline-block;
-  transition: all 0.25s;
-  text-decoration: none;
-  font-family: var(--font-heading, Arial, sans-serif);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  font-size: 0.9rem;
-  position: relative;
-  overflow: hidden;
+  font-size: 0.7rem;
+  color: var(--yellow);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
 }
-.btn-primary::after {
+.label::before {
   content: '';
-  position: absolute;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  transition: opacity 0.2s;
+  width: 2rem;
+  height: 2px;
+  background: var(--yellow);
+  flex-shrink: 0;
 }
-.btn-primary:hover::after { opacity: 0.15; }
 
-.btn-ghost {
-  border: 1.5px solid rgba(255,255,255,0.4);
-  color: #fff;
-  font-weight: 700;
-  font-style: italic;
-  padding: 1rem 2.5rem;
-  border-radius: 2px;
-  display: inline-block;
-  transition: all 0.25s;
-  text-decoration: none;
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-heading, Arial, sans-serif);
-  letter-spacing: 0.08em;
+  font-weight: 900;
+  font-style: italic;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  padding: 1rem 2.25rem;
+  border-radius: 1px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
 }
-.btn-ghost:hover {
+.btn-yellow {
+  background: var(--yellow);
+  color: var(--dark);
+}
+.btn-yellow:hover {
+  background: #fff;
+  color: var(--dark);
+}
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.btn-outline:hover {
   border-color: var(--yellow);
   color: var(--yellow);
 }
 
-/* Section label */
-.section-label {
-  font-family: var(--font-heading, Arial, sans-serif);
-  font-weight: 800;
-  font-style: italic;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  color: var(--yellow);
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-inner {
+  animation: marquee 20s linear infinite;
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  width: max-content;
 }
-.section-label::before {
-  content: '';
-  display: block;
-  width: 2.5rem;
-  height: 2px;
-  background: var(--yellow);
-}
+.marquee-inner:hover { animation-play-state: paused; }
 
-/* Heading style */
-.section-heading {
-  font-family: var(--font-heading, Arial, sans-serif);
-  font-weight: 800;
-  font-style: italic;
-  text-transform: uppercase;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+/* Fade in on scroll — simple CSS approach */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
 }
