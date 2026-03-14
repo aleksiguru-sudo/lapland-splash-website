@@ -35,9 +35,9 @@ export default function Booking({ lang }: BookingProps) {
 
     // Luodaan script-tagi containeriin — RowlyGO lisää urent-app-root ennen sitä
     const script = document.createElement("script");
-    script.src = "https://reservation.rowlygo.fi/embed.js";
+    script.src = "https://master2.d1yygpfz5h5tlv.amplifyapp.com/embed-v2.js";
     script.setAttribute("data-organizationId", "dac6fa50-d748-4c66-bb5d-76bc5fd34866");
-    script.setAttribute("data-color", "#DFC13F");
+    script.setAttribute("data-language", "fi");
     script.async = true;
     containerRef.current.appendChild(script);
 
