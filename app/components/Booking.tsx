@@ -1,5 +1,5 @@
 "use client";
-import Script from "next/script";
+import { useEffect, useRef } from "react";
 
 interface BookingProps {
   lang: "fi" | "en";
@@ -22,6 +22,24 @@ const t = {
 
 export default function Booking({ lang }: BookingProps) {
   const txt = t[lang];
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    // Poistetaan vanha skripti jos on
+    const old = containerRef.current.querySelector("script");
+    if (old) old.remove();
+    const oldRoot = containerRef.current.querySelector("#urent-app-root");
+    if (oldRoot) oldRoot.remove();
+
+    // Luodaan script-tagi containeriin — RowlyGO lisää urent-app-root ennen sitä
+    const script = document.createElement("script");
+    script.src = "https://reservation.rowlygo.fi/embed.js";
+    script.setAttribute("data-organizationId", "dac6fa50-d748-4c66-bb5d-76bc5fd34866");
+    script.async = true;
+    containerRef.current.appendChild(script);
+  }, []);
 
   return (
     <section id="varaa" className="py-32 px-6" style={{ background: "var(--dark2)" }}>
@@ -48,22 +66,16 @@ export default function Booking({ lang }: BookingProps) {
           </div>
         </div>
 
-        {/* RowlyGO widget — script luo urent-app-root divin ennen itseään */}
+        {/* RowlyGO widget container */}
         <div
+          ref={containerRef}
           style={{
-            background: "var(--dark3)",
             borderRadius: "4px",
             border: "1px solid rgba(255,255,255,0.06)",
             minHeight: "500px",
             overflow: "hidden",
           }}
-        >
-          <Script
-            src="https://reservation.rowlygo.fi/embed.js"
-            data-organizationId="dac6fa50-d748-4c66-bb5d-76bc5fd34866"
-            strategy="afterInteractive"
-          />
-        </div>
+        />
 
         <p className="text-center text-white/30 text-xs mt-6 uppercase tracking-widest">
           {txt.payment}
