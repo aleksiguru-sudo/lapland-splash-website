@@ -26,11 +26,11 @@ export default function Gallery({ lang }: GalleryProps) {
         {/* Asymmetric grid */}
         <div className="grid gap-2" style={{
           gridTemplateColumns: "repeat(12, 1fr)",
-          gridTemplateRows: "repeat(3, 260px)",
+          gridTemplateRows: "repeat(3, 300px)",
         }}>
           {/* Large left */}
           <div className="relative overflow-hidden group" style={{ gridColumn: "1 / 6", gridRow: "1 / 3", borderRadius: "3px" }}>
-            <Image src="/LaplandSplash-SonyBlue-1.jpg" alt="" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/LaplandSplash-SonyBlue-7.jpg" alt="" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           {/* Top middle */}
           <div className="relative overflow-hidden group" style={{ gridColumn: "6 / 9", gridRow: "1 / 2", borderRadius: "3px" }}>
@@ -42,7 +42,7 @@ export default function Gallery({ lang }: GalleryProps) {
           </div>
           {/* Middle */}
           <div className="relative overflow-hidden group" style={{ gridColumn: "6 / 10", gridRow: "2 / 3", borderRadius: "3px" }}>
-            <Image src="/LaplandSplash-SonyBlue-35.jpg" alt="" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/LaplandSplash-SonyBlue-18.jpg" alt="" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           {/* Middle right */}
           <div className="relative overflow-hidden group" style={{ gridColumn: "10 / 13", gridRow: "2 / 3", borderRadius: "3px" }}>

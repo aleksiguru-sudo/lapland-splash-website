@@ -56,7 +56,7 @@ export default function Services({ lang }: ServicesProps) {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
           <div>
             <p className="label mb-5">{fi ? "Safarit & hinnat" : "Safaris & pricing"}</p>
-            <h2 className="display text-white" style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}>
+            <h2 className="display text-white" style={{ fontSize: "clamp(2.8rem, 6vw, 5.5rem)" }}>
               {fi ? <><span style={{ color: "var(--yellow)" }}>VALITSE</span><br />ELÄMYKSESI</> : <><span style={{ color: "var(--yellow)" }}>CHOOSE</span><br />YOUR RIDE</>}
             </h2>
           </div>
@@ -128,7 +128,7 @@ export default function Services({ lang }: ServicesProps) {
                   style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                   <div>
                     <span className="display text-white" style={{ fontSize: "2.2rem" }}>{s.price}</span>
-                    <span className="text-white/35 text-xs ml-1">/ hlö</span>
+                    <span className="text-white/35 text-xs ml-1">{fi ? "/ hlö" : "/ person"}</span>
                   </div>
                   <a href="#varaa" className="btn btn-yellow text-xs py-3 px-5">
                     {fi ? "Varaa →" : "Book →"}
