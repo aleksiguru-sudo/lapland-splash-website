@@ -26,7 +26,7 @@ export default function Gallery({ lang }: GalleryProps) {
         {/* Asymmetric grid */}
         <div className="grid gap-2" style={{
           gridTemplateColumns: "repeat(12, 1fr)",
-          gridTemplateRows: "repeat(3, 200px)",
+          gridTemplateRows: "repeat(3, 260px)",
         }}>
           {/* Large left */}
           <div className="relative overflow-hidden group" style={{ gridColumn: "1 / 6", gridRow: "1 / 3", borderRadius: "3px" }}>

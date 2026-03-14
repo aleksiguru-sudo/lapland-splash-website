@@ -87,11 +87,11 @@ export default function Services({ lang }: ServicesProps) {
               )}
 
               {/* Image */}
-              <div className="relative overflow-hidden" style={{ height: 280 }}>
+              <div className="relative overflow-hidden" style={{ height: 320 }}>
                 <Image src={s.img} alt={s.name} fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(22,22,22,0.9) 0%, transparent 50%)" }} />
+                  style={{ background: "linear-gradient(to top, rgba(22,22,22,0.7) 0%, transparent 60%)" }} />
 
                 {!s.popular && (
                   <div className="absolute top-4 left-4 px-3 py-1 text-xs"
